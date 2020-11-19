@@ -34,12 +34,12 @@ const Home = ({ isOnline, title, onlinePlayers, maxPlayers, version, favicon, pl
     </div>
 );
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const getServerStatus = async () => {
         const response = await getStatus({
             host: "mc.rankofmatrix.com",
         });
-        console.info(response)
+        // console.info(response)
         return { isOnline: true, title: response.description.extra[0].text, maxPlayers: response.players.max, onlinePlayers: response.players.online, version: response.version.name.split(" ")[1], ping: response.ping, favicon: response.favicon, players: response.players.sample != undefined ? response.players.sample : null };
     };
 
